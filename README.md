@@ -21,6 +21,8 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+Swagger is accessible at `localhost:3000/swagger`.
+
 ## Test
 
 ```bash
