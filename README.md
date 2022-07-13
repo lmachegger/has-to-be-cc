@@ -2,6 +2,14 @@
 
 has-to-be-cc is an API with an endpoint for calculating the price to a particular chargin process.
 
+## Docker
+
+```bash
+# For running the latest docker image use
+# Use port forwarding (-p flag) to expose port 3000 from the container
+$ docker run -p <my-port>:3000 docker.io/m4chei/has-to-be-cc:latest
+```
+
 ## Installation
 
 ```bash
