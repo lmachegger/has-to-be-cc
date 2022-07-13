@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { RateRequestDto, RateResponseDto } from 'src/dtos';
+import { RateRequestDto, RateResponseDto } from './dto';
 
 @Injectable()
 export class RateService {
