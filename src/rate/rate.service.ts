@@ -1,78 +1,75 @@
 import { Injectable } from '@nestjs/common';
-import { RateRequestDto, RateResponseDto } from './dto';
+import { RateDto, RateRequestDto, RateResponseDto } from './dto';
+import {
+  calculateTimeDifferenceInMilliSeconds,
+  convertMilliSecondsTohours,
+  convertWhToKwh,
+  roundToPrecision,
+  sumArray,
+} from '../utils';
 
 @Injectable()
 export class RateService {
   applyRateToCdr(rateRequest: RateRequestDto): RateResponseDto {
-    const consumedKwh = this.convertWhToKwh(
-      this.calculateConsumedWh(
+    const energy = roundToPrecision(
+      this.calculateEnergyPrice(
         rateRequest.cdr.meterStart,
         rateRequest.cdr.meterStop,
+        rateRequest.rate.energy,
       ),
-    );
-
-    const energyPrice = this.roundToPrecision(
-      this.calculateEnergyPrice(consumedKwh, rateRequest.rate.energy),
       3,
     );
 
-    const hours = this.calculateHoursTaken(
-      rateRequest.cdr.timestampStart,
-      rateRequest.cdr.timestampStop,
-    );
-
-    const timePrice = this.roundToPrecision(
-      this.calculateTimePrice(hours, rateRequest.rate.time),
+    const time = roundToPrecision(
+      this.calculateTimePrice(
+        rateRequest.cdr.timestampStart,
+        rateRequest.cdr.timestampStop,
+        rateRequest.rate.time,
+      ),
       3,
     );
 
-    const overall = this.roundToPrecision(
-      energyPrice + timePrice + rateRequest.rate.transaction,
-      2,
-    );
+    const components: RateDto = {
+      energy,
+      time,
+      transaction: rateRequest.rate.transaction,
+    };
+
+    const overall = roundToPrecision(sumArray(Object.values(components)), 2);
 
     return {
       overall,
-      components: {
-        energy: energyPrice,
-        time: timePrice,
-        transaction: rateRequest.rate.transaction,
-      },
+      components,
     };
   }
 
-  private roundToPrecision(value: number, precision: number): number {
-    const multiplier = 10 ** precision;
-    return Math.round((value + Number.EPSILON) * multiplier) / multiplier;
-  }
-
-  private calculateEnergyPrice(consumedKwh: number, pricePerKwh: number) {
+  private calculateEnergyPrice(
+    meterStart: number,
+    meterStop: number,
+    pricePerKwh: number,
+  ) {
+    const consumedKwh = convertWhToKwh(meterStop - meterStart);
     return consumedKwh * pricePerKwh;
   }
 
-  private calculateConsumedWh(meterStart: number, meterStop: number): number {
-    return meterStop - meterStart;
-  }
-
-  private calculateTimePrice(hours: number, pricePerHour: number): number {
+  private calculateTimePrice(
+    timestampStart: string,
+    timestampStop: string,
+    pricePerHour: number,
+  ): number {
+    const hours = this.calculateDurationInHours(timestampStart, timestampStop);
     return hours * pricePerHour;
   }
 
-  private convertWhToKwh(wh: number): number {
-    return wh / 1_000;
-  }
-
-  private calculateHoursTaken(
+  private calculateDurationInHours(
     timestampStart: string,
     timestampStop: string,
   ): number {
-    const milliSecondsTaken =
-      new Date(timestampStop).getTime() - new Date(timestampStart).getTime();
+    const duration = calculateTimeDifferenceInMilliSeconds(
+      new Date(timestampStart),
+      new Date(timestampStop),
+    );
 
-    return this.convertMilliSecondsTohours(milliSecondsTaken);
-  }
-
-  private convertMilliSecondsTohours(milliSeconds: number): number {
-    return milliSeconds / (1_000 * 60 * 60);
+    return convertMilliSecondsTohours(duration);
   }
 }
