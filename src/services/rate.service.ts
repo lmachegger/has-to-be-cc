@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { time } from 'console';
 import { RateRequestDto, RateResponseDto } from 'src/dtos';
 
 @Injectable()
