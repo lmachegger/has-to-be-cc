@@ -1,6 +1,6 @@
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+has-to-be-cc is an API with an endpoint for calculating the price to a particular chargin process.
 
 ## Installation
 
