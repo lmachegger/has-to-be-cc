@@ -1,4 +1,4 @@
-import { RateRequestDto, RateResponseDto } from 'src/dtos';
+import { RateRequestDto, RateResponseDto } from './dto';
 import { RateService } from './rate.service';
 
 describe('RateService', () => {
