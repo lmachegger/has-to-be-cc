@@ -9,7 +9,6 @@ async function bootstrap() {
     .setTitle('Has To Be Coding Challenge')
     .setDescription('API for calculating price for a charging process.')
     .setVersion('1.0')
-    .addTag('')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('swagger', app, document);
