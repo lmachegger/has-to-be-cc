@@ -1,6 +1,7 @@
 ## Description
 
-has-to-be-cc is an API with an endpoint for calculating the price to a particular chargin process.
+has-to-be-cc is an API with an endpoint for calculating the price to a particular chargin process.  
+A generated API Documentation using Swagger is accessible at `localhost:3000/swagger`.
 
 ## Docker
 
@@ -29,7 +30,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-Swagger is accessible at `localhost:3000/swagger`.
+
 
 ## Test
 
