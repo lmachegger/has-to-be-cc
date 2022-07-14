@@ -13,8 +13,7 @@ Endpoint for applying rates to cdr is accessible at `/rate`.
 ## Docker
 
 ```bash
-# For running the latest docker image use
-# Use port forwarding (-p flag) to expose port 3000 from the container
+# To run the latest Docker image use:
 $ docker run -p <my-port>:3000 docker.io/m4chei/has-to-be-cc:latest
 
 ```
