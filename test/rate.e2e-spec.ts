@@ -3,7 +3,6 @@ import { INestApplication, ValidationPipe } from '@nestjs/common';
 import * as request from 'supertest';
 import { RateRequestDto, RateResponseDto } from 'src/rate/dto';
 import { AppModule } from './../src/app.module';
-import { RateService } from '../src/rate/rate.service';
 
 describe('RateController (e2e)', () => {
   let app: INestApplication;
