@@ -1,4 +1,6 @@
-![example workflow](https://github.com/lmachegger/has-to-be-cc/actions/workflows/workflow.yml/badge.svg)
+# has-to-be-cc
+
+![Tests & Docker](https://github.com/lmachegger/has-to-be-cc/actions/workflows/workflow.yml/badge.svg)
 
 ## Description
 
