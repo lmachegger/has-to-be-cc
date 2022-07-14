@@ -3,14 +3,14 @@ import { Min } from 'class-validator';
 
 export class RateDto {
   @Min(0)
-  @ApiProperty()
+  @ApiProperty({ default: 0.3 })
   energy: number;
 
   @Min(0)
-  @ApiProperty()
+  @ApiProperty({ default: 2 })
   time: number;
 
   @Min(0)
-  @ApiProperty()
+  @ApiProperty({ default: 1 })
   transaction: number;
 }
