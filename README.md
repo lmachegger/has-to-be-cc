@@ -1,6 +1,8 @@
 ## Description
 
-has-to-be-cc is an API with an endpoint for calculating the price to a particular chargin process.  
+This project is built using the [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+
+**has-to-be-cc** is an API with an endpoint for calculating the price to a particular chargin process.  
 A generated API Documentation using Swagger is accessible at `/swagger`.  
 Endpoint for applying rates to cdr is accessible at `/rate`.
 
