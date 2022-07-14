@@ -1,3 +1,5 @@
+![example workflow](https://github.com/lmachegger/has-to-be-cc/actions/workflows/workflow.yml/badge.svg)
+
 ## Description
 
 This project is built using the [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
