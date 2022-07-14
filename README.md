@@ -1,7 +1,8 @@
 ## Description
 
 has-to-be-cc is an API with an endpoint for calculating the price to a particular chargin process.  
-A generated API Documentation using Swagger is accessible at `localhost:3000/swagger`.
+A generated API Documentation using Swagger is accessible at `/swagger`.  
+Endpoint for applying rates to cdr is accessible at `/rate`.
 
 ## Docker
 
@@ -9,7 +10,10 @@ A generated API Documentation using Swagger is accessible at `localhost:3000/swa
 # For running the latest docker image use
 # Use port forwarding (-p flag) to expose port 3000 from the container
 $ docker run -p <my-port>:3000 docker.io/m4chei/has-to-be-cc:latest
+
 ```
+
+After starting the container, open `localhost:<my-port>/swagger` to view the API Documentation
 
 ## Installation
 
@@ -29,8 +33,6 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
-
-
 
 ## Test
 
